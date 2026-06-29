@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Jospat Admin Upload</title>
+</head>
+
+<body>
+
+<h2>Upload Project Image</h2>
+
+
+<form id="uploadForm">
+
+<input type="file" id="image" required>
+
+<button type="submit">
+Upload
+</button>
+
+</form>
+
+
+<script>
+
+const form = document.getElementById("uploadForm");
+
+
+form.addEventListener("submit", async(e)=>{
+
+e.preventDefault();
+
+
+const file = document.getElementById("image").files[0];
+
+
+const data = new FormData();
+
+data.append("image", file);
+
+
+
+const res = await fetch(
+"http://localhost:5000/upload",
+{
+method:"POST",
+body:data
+}
+);
+
+
+const result = await res.json();
+
+
+alert(result.message);
+
+
+});
+
+
+</script>
+
+
+</body>
+
+</html>
